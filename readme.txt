@@ -29,6 +29,8 @@ Database replication is not good idea because we are dealing with writing. So th
 The stress test could be done by a loading test tool such as npm loadtest.
 loadtest -c 10 --rps 200 -P '{"patientId":"100","timestamp":"Tue Nov 01 2016 09:11:51 GMT-0500 (CDT)","medication":"Albuterol"}' http://mysite.com/http://localhost:3000/api/usages
 
+5. repo link https://github.com/mdrosophila/busyapi/tree/qyang
+
 
 Timeframe
 9:30AM - 9:35AM fork the repo and create local repo
