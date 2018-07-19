@@ -27,7 +27,21 @@ Database replication is not good idea because we are dealing with writing. So th
 
 4. load test the server.
 The stress test could be done by a loading test tool such as npm loadtest.
-loadtest -c 10 --rps 200 -P '{"patientId":"100","timestamp":"Tue Nov 01 2016 09:11:51 GMT-0500 (CDT)","medication":"Albuterol"}' http://mysite.com/http://localhost:3000/api/usages
+loadtest -c 10 --rps 20000 -P '{"patientId":"100","timestamp":"Tue Nov 01 2016 09:11:51 GMT-0500 (CDT)","medication":"Albuterol"}' http://localhost:3000/api/usages
+2000 requests per second is ok, with mean latency < 2ms. see log:
+[Thu Jul 19 2018 11:27:41 GMT-0500 (CDT)] INFO Requests: 0, requests per second: 0, mean latency: 0 ms
+[Thu Jul 19 2018 11:27:46 GMT-0500 (CDT)] INFO Requests: 9381, requests per second: 1877, mean latency: 1.5 ms
+[Thu Jul 19 2018 11:27:51 GMT-0500 (CDT)] INFO Requests: 19381, requests per second: 2001, mean latency: 1.2 ms
+18000 requests per second starts to see errors with latency around 500ms. It looks the server could handle ~6000 requests per second. see log:
+[Thu Jul 19 2018 11:29:19 GMT-0500 (CDT)] INFO Requests: 0, requests per second: 0, mean latency: 0 ms
+[Thu Jul 19 2018 11:29:24 GMT-0500 (CDT)] INFO Requests: 26853, requests per second: 5373, mean latency: 157.9 ms
+[Thu Jul 19 2018 11:29:29 GMT-0500 (CDT)] INFO Requests: 58499, requests per second: 6330, mean latency: 523.2 ms
+[Thu Jul 19 2018 11:29:29 GMT-0500 (CDT)] INFO Errors: 2974, accumulated errors: 2974, 5.1% of total requests
+[Thu Jul 19 2018 11:29:34 GMT-0500 (CDT)] INFO Requests: 90993, requests per second: 6498, mean latency: 520.2 ms
+[Thu Jul 19 2018 11:29:34 GMT-0500 (CDT)] INFO Errors: 3888, accumulated errors: 6862, 7.5% of total requests
+[Thu Jul 19 2018 11:29:39 GMT-0500 (CDT)] INFO Requests: 123709, requests per second: 6542, mean latency: 524.6 ms
+[Thu Jul 19 2018 11:29:39 GMT-0500 (CDT)] INFO Errors: 3112, accumulated errors: 9974, 8.1% of total requests
+
 
 5. repo link https://github.com/mdrosophila/busyapi/tree/qyang
 
