@@ -1,0 +1,21 @@
+config:
+  tls:
+    rejectUnauthorized: false
+  target: "http://35.211.56.231"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up the application"
+    - duration: 120
+      arrivalRate: 5
+      name: "Sustained max load"
+scenarios:
+  - flow:
+    - loop:
+      - post:
+          url: "/api/usages"
+          json:
+            patientId: 100
+            timestamp: "Tue Nov 01 2016 09:11:51 GMT-0500 (CDT)"
+            medication: "Albuterol"
+      count: 1000

@@ -41,3 +41,12 @@ The API consists of a single endpoint which receives data when a patient uses th
     "id":22954
 }
 ````
+
+### Benchmarking
+
+  run command below to run benchmarking using artillery.io on deployed test to
+  load balancer on GCP.
+  
+````
+  benchmark run artillery_benchmark.yml
+````

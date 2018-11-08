@@ -13,5 +13,8 @@
     "jade": "~1.11.0",
     "morgan": "^1.9.1",
     "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "artillery": "^1.6.0-25"
   }
 }
